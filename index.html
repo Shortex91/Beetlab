@@ -5,78 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BeetLab</title>
 
-  <!-- ✍️ Script Font -->
+  <!-- Script Font für "Beet." -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0d1510;
-      --bg-top: #1a2a20;
-      --surface: rgba(255,255,255,0.04);
-      --line: rgba(255,255,255,0.09);
+      --green: #57d465;
+      --green-dark: #43b851;
       --text: #eef5f0;
-      --muted: #a8b4ac;
-      --green: #4fc860;
+      --muted: #c2cdc6;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      text-align: center;
       background:
-        radial-gradient(circle at top, rgba(79,200,96,0.08), transparent 28%),
-        linear-gradient(180deg, var(--bg-top), var(--bg));
+        radial-gradient(circle at top, rgba(87,212,101,0.10), transparent 24%),
+        linear-gradient(90deg, #08130d 0%, #0d2218 50%, #08130d 100%);
     }
 
     .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
     /* HEADER */
-
     .header {
+      padding: 20px 0;
+    }
+
+    .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 20px;
     }
 
-    .brand {
-      font-size: 26px;
-      font-weight: bold;
+    .brand img {
+      height: 55px;
     }
 
-    .header a {
-      margin-left: 15px;
-      font-size: 14px;
-      color: #ccc;
+    .nav a {
+      margin-left: 20px;
+      text-decoration: underline;
     }
 
     /* HERO */
-
-    h1 {
-      font-size: 72px;
-      line-height: 1.05;
-      margin: 40px 0 20px;
+    .hero {
+      text-align: center;
+      padding: 40px 0;
     }
 
-    .beet-highlight {
+    .hero h1 {
+      font-size: clamp(50px, 7vw, 90px);
+      line-height: 1;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+
+    .beet-script {
       font-family: 'Pacifico', cursive;
-      font-size: 1.1em;
-      color: white;
+      margin-left: 10px;
       display: inline-block;
-      transform: rotate(-3deg);
-      text-shadow: 0 6px 20px rgba(255,255,255,0.15);
+      transform: rotate(-2deg);
     }
 
-    p {
+    .hero p {
+      max-width: 800px;
+      margin: 20px auto;
       font-size: 20px;
       color: var(--muted);
-      max-width: 700px;
-      margin: auto;
     }
 
     .buttons {
@@ -84,107 +82,40 @@
     }
 
     .btn {
-      padding: 14px 24px;
+      padding: 14px 28px;
       border-radius: 12px;
-      margin: 5px;
-      display: inline-block;
-      text-decoration: none;
       font-weight: bold;
+      margin: 0 10px;
+      display: inline-block;
     }
 
-    .primary {
-      background: var(--green);
+    .btn-primary {
+      background: linear-gradient(var(--green), var(--green-dark));
       color: black;
     }
 
-    .secondary {
+    .btn-secondary {
       border: 1px solid var(--green);
       color: var(--green);
     }
 
-    /* VIDEOS */
-
-    .animation-row {
+    /* IMAGES */
+    .cards {
       margin-top: 50px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    .anim-card {
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
-    }
-
-    .anim-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-
-    .anim-card video {
+    .card img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* BOTTOM */
-
-    .bottom-section {
-      margin-top: 100px;
-    }
-
-    .bottom-section h2 {
-      font-size: 40px;
-      margin-bottom: 40px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .feature {
-      background: rgba(255,255,255,0.04);
-      padding: 25px;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .feature p {
-      font-size: 16px;
-    }
-
-    .cta-box {
-      margin-top: 40px;
-    }
-
-    /* FOOTER */
-
-    .footer {
-      margin-top: 80px;
-      font-size: 14px;
-      color: #888;
-    }
-
-    .footer a {
-      color: #888;
-      margin: 0 5px;
-    }
-
-    @media (max-width: 900px) {
-      .animation-row,
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 42px;
-      }
+    /* FOOT */
+    .section {
+      margin-top: 60px;
+      text-align: center;
     }
 
   </style>
@@ -192,21 +123,31 @@
 
 <body>
 
-  <div class="container">
+  <!-- HEADER -->
+  <div class="header container">
+    <div class="header-inner">
 
-    <!-- HEADER -->
-    <div class="header">
-      <div class="brand">BeetLab</div>
-      <div>
+      <!-- LOGO -->
+      <div class="brand">
+        <img src="Beet.Lab Logo.png" alt="BeetLab Logo">
+      </div>
+
+      <!-- NAV -->
+      <div class="nav">
         <a href="#">Entdecken</a>
         <a href="#">Start</a>
       </div>
-    </div>
 
-    <!-- HERO -->
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero container">
+
     <h1>
       Der intelligente Weg<br>
-      zu deinem perfekten <span class="beet-highlight">Beet.</span>
+      zu deinem perfekten
+      <span class="beet-script">Beet.</span>
     </h1>
 
     <p>
@@ -215,72 +156,28 @@
     </p>
 
     <div class="buttons">
-      <a href="#" class="btn primary">Jetzt starten</a>
-      <a href="#" class="btn secondary">Mehr erfahren</a>
+      <a href="#" class="btn btn-primary">Jetzt starten</a>
+      <a href="#" class="btn btn-secondary">Mehr erfahren</a>
     </div>
 
-    <!-- VIDEOS -->
-    <div class="animation-row">
-
-      <div class="anim-card">
-        <video autoplay muted loop playsinline>
-          <source src="corn.mp4" type="video/mp4">
-        </video>
+    <!-- BILDER -->
+    <div class="cards">
+      <div class="card">
+        <img src="image1.png">
       </div>
-
-      <div class="anim-card">
-        <video autoplay muted loop playsinline>
-          <source src="pumpkin.mp4" type="video/mp4">
-        </video>
+      <div class="card">
+        <img src="image2.png">
       </div>
-
-      <div class="anim-card">
-        <video autoplay muted loop playsinline>
-          <source src="bad-neighbors.mp4" type="video/mp4">
-        </video>
+      <div class="card">
+        <img src="image3.png">
       </div>
-
     </div>
 
-    <!-- BOTTOM -->
-    <div class="bottom-section">
+  </div>
 
-      <h2>Warum BeetLab?</h2>
-
-      <div class="features">
-
-        <div class="feature">
-          <h3>🌱 Smart</h3>
-          <p>Verstehe sofort, welche Pflanzen zusammen funktionieren.</p>
-        </div>
-
-        <div class="feature">
-          <h3>☀️ Effizient</h3>
-          <p>Nutze Licht und Fläche optimal.</p>
-        </div>
-
-        <div class="feature">
-          <h3>🧠 Durchdacht</h3>
-          <p>Plane dein Beet auf Basis echter Zusammenhänge.</p>
-        </div>
-
-      </div>
-
-      <div class="cta-box">
-        <a href="#" class="btn primary">Jetzt starten</a>
-      </div>
-
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <p>© 2026 BeetLab</p>
-      <p>
-        <a href="#">Impressum</a> · 
-        <a href="#">Datenschutz</a>
-      </p>
-    </div>
-
+  <!-- SECTION -->
+  <div class="section container">
+    <h2>Warum BeetLab?</h2>
   </div>
 
 </body>
