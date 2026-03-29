@@ -97,8 +97,44 @@
       background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 50%);
     }
 
+    /* BOTTOM SECTION */
+
+    .bottom-section {
+      margin-top: 80px;
+    }
+
+    .bottom-section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      font-size: 16px;
+    }
+
     @media (max-width: 900px) {
       .animation-row {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
         grid-template-columns: 1fr;
       }
 
@@ -129,30 +165,79 @@
       <a href="#" class="btn secondary">Mehr erfahren</a>
     </div>
 
-    <!-- 🎬 VIDEO ANIMATIONEN -->
+    <!-- 🎬 VIDEOS -->
     <div class="animation-row">
 
       <div class="anim-card">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted playsinline>
           <source src="corn.mp4" type="video/mp4">
         </video>
       </div>
 
       <div class="anim-card">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted playsinline>
           <source src="pumpkin.mp4" type="video/mp4">
         </video>
       </div>
 
       <div class="anim-card">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted playsinline>
           <source src="bad-neighbors.mp4" type="video/mp4">
         </video>
       </div>
 
     </div>
 
+    <!-- 🔽 UNTERER BEREICH -->
+    <div class="bottom-section">
+
+      <h2>Warum BeetLab?</h2>
+
+      <div class="features">
+
+        <div class="feature">
+          <h3>Smart</h3>
+          <p>Klare Empfehlungen statt bloßem Ausprobieren.</p>
+        </div>
+
+        <div class="feature">
+          <h3>Effizient</h3>
+          <p>Mehr aus Fläche, Sonne und Struktur holen.</p>
+        </div>
+
+        <div class="feature">
+          <h3>Praktisch</h3>
+          <p>Für Anfänger und ambitionierte Gärtner.</p>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+
+  <!-- 🔁 SMOOTH LOOP SCRIPT -->
+  <script>
+    const videos = document.querySelectorAll("video");
+
+    videos.forEach(video => {
+      let reverse = false;
+
+      video.addEventListener("ended", () => {
+        reverse = !reverse;
+        video.playbackRate = reverse ? -1 : 1;
+        video.play();
+      });
+
+      video.addEventListener("timeupdate", () => {
+        if (reverse && video.currentTime <= 0.05) {
+          reverse = false;
+          video.playbackRate = 1;
+          video.play();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
