@@ -63,7 +63,7 @@
     /* VIDEO SECTION */
 
     .animation-row {
-      margin-top: 50px;
+      margin-top: 60px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
@@ -100,33 +100,61 @@
     /* BOTTOM SECTION */
 
     .bottom-section {
-      margin-top: 80px;
+      margin-top: 100px;
     }
 
     .bottom-section h2 {
-      font-size: 36px;
-      margin-bottom: 30px;
+      font-size: 42px;
+      margin-bottom: 40px;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 24px;
     }
 
     .feature {
-      background: rgba(255,255,255,0.05);
-      padding: 25px;
+      background: rgba(255,255,255,0.04);
+      padding: 30px;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
     }
 
     .feature h3 {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .feature p {
       font-size: 16px;
+      color: #aab5ad;
+    }
+
+    .cta-box {
+      margin-top: 50px;
+      padding: 30px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #3fa34d33, #4fc86022);
+      border: 1px solid rgba(79,200,96,0.2);
+    }
+
+    .cta-box h3 {
+      margin-bottom: 20px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 80px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .footer a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 5px;
     }
 
     @media (max-width: 900px) {
@@ -169,26 +197,26 @@
     <div class="animation-row">
 
       <div class="anim-card">
-        <video autoplay muted playsinline>
+        <video autoplay muted loop playsinline>
           <source src="corn.mp4" type="video/mp4">
         </video>
       </div>
 
       <div class="anim-card">
-        <video autoplay muted playsinline>
+        <video autoplay muted loop playsinline>
           <source src="pumpkin.mp4" type="video/mp4">
         </video>
       </div>
 
       <div class="anim-card">
-        <video autoplay muted playsinline>
+        <video autoplay muted loop playsinline>
           <source src="bad-neighbors.mp4" type="video/mp4">
         </video>
       </div>
 
     </div>
 
-    <!-- 🔽 UNTERER BEREICH -->
+    <!-- 🔽 PREMIUM BEREICH -->
     <div class="bottom-section">
 
       <h2>Warum BeetLab?</h2>
@@ -196,48 +224,39 @@
       <div class="features">
 
         <div class="feature">
-          <h3>Smart</h3>
-          <p>Klare Empfehlungen statt bloßem Ausprobieren.</p>
+          <h3>🌱 Smart</h3>
+          <p>Verstehe sofort, welche Pflanzen zusammen funktionieren.</p>
         </div>
 
         <div class="feature">
-          <h3>Effizient</h3>
-          <p>Mehr aus Fläche, Sonne und Struktur holen.</p>
+          <h3>☀️ Effizient</h3>
+          <p>Nutze Licht, Fläche und Struktur optimal aus.</p>
         </div>
 
         <div class="feature">
-          <h3>Praktisch</h3>
-          <p>Für Anfänger und ambitionierte Gärtner.</p>
+          <h3>🧠 Durchdacht</h3>
+          <p>Plane dein Beet auf Basis echter Zusammenhänge.</p>
         </div>
 
       </div>
 
+      <div class="cta-box">
+        <h3>Starte jetzt mit deinem ersten intelligenten Beet.</h3>
+        <a href="#" class="btn primary">Jetzt starten</a>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>© 2026 BeetLab</p>
+      <p>
+        <a href="#">Impressum</a> · 
+        <a href="#">Datenschutz</a>
+      </p>
     </div>
 
   </div>
-
-  <!-- 🔁 SMOOTH LOOP SCRIPT -->
-  <script>
-    const videos = document.querySelectorAll("video");
-
-    videos.forEach(video => {
-      let reverse = false;
-
-      video.addEventListener("ended", () => {
-        reverse = !reverse;
-        video.playbackRate = reverse ? -1 : 1;
-        video.play();
-      });
-
-      video.addEventListener("timeupdate", () => {
-        if (reverse && video.currentTime <= 0.05) {
-          reverse = false;
-          video.playbackRate = 1;
-          video.play();
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
